@@ -5,11 +5,11 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install
-RUN chmod -R 755 node_modules/.bin
+RUN chmod -R +x node_modules/.bin
 
 COPY . .
 
-RUN npm run build
+RUN npx vite build
 
 EXPOSE 8080
 
