@@ -80,14 +80,6 @@ app.use('/api', (req, res) => {
   });
 });
 
-if (isProduction) {
-  const frontendDist = path.join(__dirname, '..', 'frontend', 'dist');
-  app.use(express.static(frontendDist));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendDist, 'index.html'));
-  });
-}
-
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
