@@ -7,6 +7,8 @@ const authRoutes = require('./routes/authRoutes');
 
 dotenv.config();
 
+console.log('BACKEND VERSION NEW -', new Date().toISOString());
+
 const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
 
