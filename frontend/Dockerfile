@@ -4,13 +4,14 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
-RUN chmod -R +x node_modules/.bin
+RUN npm install --include=dev
 
 COPY . .
 
-RUN npx vite build
+RUN chmod -R 755 node_modules/.bin
+
+RUN ./node_modules/.bin/vite build
 
 EXPOSE 8080
 
-CMD ["npx", "serve", "-s", "dist", "-l", "8080"]
+CMD ["npx","serve","-s","dist","-l","8080"]
