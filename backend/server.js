@@ -52,7 +52,10 @@ setInterval(() => {
 connectDB();
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: [
+    'https://glistening-intuition-production-69a1.up.railway.app',
+    'http://localhost:5173'
+  ],
   credentials: true
 }));
 

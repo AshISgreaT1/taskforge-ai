@@ -11,6 +11,10 @@ const generateToken = (id) => {
 
 exports.signup = async (req, res) => {
   try {
+    console.log('SIGNUP REQUEST:', {
+      body: req.body,
+      authHeader: req.headers.authorization
+    });
     const { name, email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -55,6 +59,10 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
+    console.log('LOGIN REQUEST:', {
+      body: req.body,
+      authHeader: req.headers.authorization
+    });
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({
@@ -102,7 +110,12 @@ exports.login = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('Login error:', {
+      error: error.message,
+      stack: error.stack,
+      requestBody: req.body,
+      authHeader: req.headers.authorization
+    });
     res.status(500).json({
       success: false,
       message: 'Error logging in',
